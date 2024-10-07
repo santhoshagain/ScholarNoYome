@@ -1,0 +1,81 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# === Frontend (React) related ===
+# Dependency directories
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.js
+
+# Build directories
+frontend/build/
+frontend/dist/
+
+# Environment variables
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Coverage directory used by testing tools
+frontend/coverage/
+
+# Miscellaneous
+frontend/.DS_Store
+frontend/*.lock
+frontend/.swp
+frontend/.vscode/
+frontend/.idea/
+
+# Static build cache
+frontend/.cache/
+
+
+# === Backend (Spring Boot - Java) related ===
+# Compiled files
+backend/*.class
+
+# Package Files
+backend/*.jar
+backend/*.war
+backend/*.ear
+
+# Maven / Gradle dependencies
+backend/target/
+backend/build/
+
+# Environment variables
+backend/.env
+backend/*.properties
+
+# IDE files
+backend/.idea/
+backend/*.iml
+backend/.vscode/
+backend/*.classpath
+backend/*.project
+backend/.settings/
+
+# Logs and temp files
+backend/logs/
+backend/*.log
+backend/tmp/
+backend/*.swp
+
+
+# === General Exclusions ===
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE files (if IDE-specific folders are in both frontend and backend)
+.idea/
+.vscode/
+*.iml
+
+# License and README files (exclude from Git if necessary, not common)
+# readme.md
+# license.md
