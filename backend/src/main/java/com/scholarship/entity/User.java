@@ -1,6 +1,5 @@
 package com.scholarship.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +14,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String role; // New field for user role
 
     // Getters and setters
 
@@ -48,5 +48,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

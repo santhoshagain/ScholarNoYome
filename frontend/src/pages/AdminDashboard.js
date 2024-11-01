@@ -1,44 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import './styles/StudentDashboard.css';
+import React from 'react';
+import './styles/AdminDashboard.css';
 
 const AdminDashboard = () => {
-  const [scholarships, setScholarships] = useState([]);
-
-  useEffect(() => {
-    // Fetch available scholarships
-    const fetchScholarships = async () => {
-      try {
-        // Use the environment variable for the backend URL
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scholarships`);
-        const data = await response.json();
-        setScholarships(data);
-      } catch (error) {
-        console.error('Error fetching scholarships:', error);
-      }
-    };
-
-    fetchScholarships();
-  }, []);
-
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-content">
-        <h1 className="dashboard-title">Available Scholarships</h1>
-        <p className="dashboard-subtitle">Explore and apply for scholarships that match your interests and needs.</p>
+    <div className="admin-dashboard-container">
+      <div className="admin-dashboard-content">
+        <h1 className="admin-dashboard-title">Admin Dashboard</h1>
+        <p className="admin-dashboard-subtitle">Manage scholarships with ease.</p>
 
-        {scholarships.length > 0 ? (
-          <div className="scholarship-list">
-            {scholarships.map((scholarship) => (
-              <div className="scholarship-card" key={scholarship.id}>
-                <h3>{scholarship.name}</h3>
-                <p>{scholarship.description}</p>
-                <p>Amount: ${scholarship.amount}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="no-scholarships">No scholarships available at the moment.</p>
-        )}
+        <div className="admin-menu-list">
+          <button className="admin-menu-button">View Scholarships</button>
+          <button className="admin-menu-button">Add Scholarship</button>
+          <button className="admin-menu-button">Update Scholarship</button>
+          <button className="admin-menu-button">Delete Scholarship</button>
+        </div>
+
+        <p className="admin-dashboard-message">
+          Stay tuned! We will add more features later.
+        </p>
       </div>
     </div>
   );

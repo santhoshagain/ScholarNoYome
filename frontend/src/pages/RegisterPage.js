@@ -7,15 +7,16 @@ const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('Student'); // Default role
   const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
-      // Use the environment variable for the backend URL
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
         name,
         email,
         password,
+        role, // Include role in the request
       });
 
       alert(response.data.message);
@@ -56,6 +57,12 @@ const RegisterPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+        </div>
+        <div className="input-group">
+          <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="Student">Student</option>
+            <option value="Admin">Admin</option>
+          </select>
         </div>
         <button onClick={handleRegister} className="register-btn">Register</button>
         <p className="login-link">

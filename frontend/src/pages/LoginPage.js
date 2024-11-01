@@ -10,21 +10,32 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      // Use the environment variable for the backend URL
+      // Send login request to the backend
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
         email,
         password,
       });
-
+  
+      // Alert the success message
       alert(response.data.message);
+  
+      // Check if the response is successful and role is present
       if (response.status === 200) {
-        navigate('/Student-Dashboard'); // Redirect to dashboard after successful login
+        const userRole = response.data.role;
+  
+        // Redirect based on the role
+        if (userRole === "Student") {
+          navigate('/Student-Dashboard');
+        } else if (userRole === "Admin") {
+          navigate('/Admin-Dashboard');
+        }
       }
     } catch (error) {
       alert('Invalid credentials');
       console.error('Login error:', error);
     }
   };
+  
 
   return (
     <div className="login-container">

@@ -31,4 +31,10 @@ public class EnvConfig {
     public String getDbPassword() {
         return dotenv.get("DB_PASSWORD");
     }
+    
+    @Bean
+    @Qualifier("frontendUrl")
+    public String getFrontendUrl() {
+        return dotenv.get("FRONTEND_URL");
+    }
 }
