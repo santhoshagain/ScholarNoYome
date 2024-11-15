@@ -15,11 +15,13 @@ public class Scholarship {
     private String name;
     private String description;
     private double amount;
+    
 
     // Getters and setters
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -48,4 +50,6 @@ public class Scholarship {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+    
+
 }
