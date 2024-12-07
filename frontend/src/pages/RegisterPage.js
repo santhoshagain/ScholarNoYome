@@ -11,7 +11,36 @@ const RegisterPage = () => {
   const [role, setRole] = useState('Student'); // Default role
   const navigate = useNavigate();
 
+  const validateInputs = () => {
+    // Name validation
+    if (name.trim().length < 3) {
+      alert('Name must be at least 3 characters long.');
+      return false;
+    }
+
+    // Email validation
+    if (!email.includes('@')) {
+      alert('Please enter a valid email address with "@"');
+      return false;
+    }
+
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      alert(
+        'Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.'
+      );
+      return false;
+    }
+
+    return true;
+  };
+
   const handleRegister = async () => {
+    if (!validateInputs()) {
+      return;
+    }
+
     try {
       const response = await axios.post(`${BACKEND_URL}/signup`, {
         name,

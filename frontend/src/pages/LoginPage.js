@@ -10,20 +10,26 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    // Email validation
+    if (!email.includes('@')) {
+      alert('Please enter a valid email address with "@"');
+      return;
+    }
+
     try {
       // Send login request to the backend
       const response = await axios.post(`${BACKEND_URL}/login`, {
         email,
         password,
       });
-  
+
       // Alert the success message
       alert(response.data.message);
-  
+
       // Check if the response is successful and role is present
       if (response.status === 200) {
         const userRole = response.data.role;
-  
+
         // Redirect based on the role
         if (userRole === "Student") {
           navigate('/Student-Dashboard');
@@ -36,7 +42,6 @@ const LoginPage = () => {
       console.error('Login error:', error);
     }
   };
-  
 
   return (
     <div className="login-container">
