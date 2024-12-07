@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './styles/LoginPage.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import BACKEND_URL from './config';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       // Send login request to the backend
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+      const response = await axios.post(`${BACKEND_URL}/login`, {
         email,
         password,
       });

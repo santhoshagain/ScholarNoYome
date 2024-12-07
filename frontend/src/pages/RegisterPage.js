@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './styles/RegisterPage.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import BACKEND_URL from './config';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -12,7 +13,7 @@ const RegisterPage = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
+      const response = await axios.post(`${BACKEND_URL}/signup`, {
         name,
         email,
         password,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/StudentDashboard.css';
+import BACKEND_URL from './config';
 
 const StudentDashboard = () => {
   const [scholarships, setScholarships] = useState([]);
@@ -9,7 +10,7 @@ const StudentDashboard = () => {
     const fetchScholarships = async () => {
       try {
         // Use the environment variable for the backend URL
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scholarships`);
+        const response = await fetch(`${BACKEND_URL}/scholarships`);
         const data = await response.json();
         setScholarships(data);
       } catch (error) {

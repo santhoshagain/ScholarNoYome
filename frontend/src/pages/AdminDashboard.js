@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/AdminDashboard.css';
+import BACKEND_URL from './config';
 
 const AdminDashboard = () => {
   const [scholarships, setScholarships] = useState([]);
@@ -18,7 +19,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchScholarships = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scholarships`);
+        const response = await fetch(`${BACKEND_URL}/scholarships`);
         const data = await response.json();
         setScholarships(data);
       } catch (error) {
@@ -37,7 +38,7 @@ const AdminDashboard = () => {
   const handleAddScholarship = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scholarships`, {
+      const response = await fetch(`${BACKEND_URL}/scholarships`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ const AdminDashboard = () => {
 
   const handleDeleteScholarship = async (id) => {
     try {
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/scholarships/${id}`, {
+      await fetch(`${BACKEND_URL}/scholarships/${id}`, {
         method: 'DELETE'
       });
       setScholarships(scholarships.filter(scholarship => scholarship.id !== id));
@@ -70,7 +71,7 @@ const AdminDashboard = () => {
   const handleUpdateScholarship = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scholarships/${editScholarship.id}`, {
+      const response = await fetch(`${BACKEND_URL}/scholarships/${editScholarship.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
