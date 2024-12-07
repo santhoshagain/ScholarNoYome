@@ -1,0 +1,18 @@
+/* AddScholarship.css */
+
+/* Form input focus styles */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Card shadow effect */
+  .card.shadow-lg {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add some padding to the card content */
+  .card-body {
+    padding: 2rem;
+  }
+  

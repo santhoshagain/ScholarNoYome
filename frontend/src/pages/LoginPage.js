@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './styles/LoginPage.css';
-import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import BACKEND_URL from './config';
 
 const LoginPage = () => {
@@ -10,27 +10,19 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // Email validation
     if (!email.includes('@')) {
       alert('Please enter a valid email address with "@"');
       return;
     }
 
     try {
-      // Send login request to the backend
-      const response = await axios.post(`${BACKEND_URL}/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(`${BACKEND_URL}/login`, { email, password });
 
-      // Alert the success message
       alert(response.data.message);
 
-      // Check if the response is successful and role is present
       if (response.status === 200) {
         const userRole = response.data.role;
 
-        // Redirect based on the role
         if (userRole === "Student") {
           navigate('/Student-Dashboard');
         } else if (userRole === "Admin") {
@@ -44,32 +36,62 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Login to Your Account</h2>
-        <p>Access your scholarship portal by logging in below.</p>
-        <div className="input-group">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+    <>
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container">
+          <a className="navbar-brand" href="/">Scholarship Portal</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact-us">Contact Us</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about-us">About Us</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/register">Sign Up</Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="input-group">
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+      </nav>
+
+      {/* Login Form */}
+      <div className="container d-flex justify-content-center align-items-center min-vh-100">
+        <div className="card shadow-lg p-4" style={{ width: '400px', borderRadius: '10px' }}>
+          <h2 className="text-center mb-4">Login</h2>
+          <div className="mb-3">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-primary w-100 mb-3" onClick={handleLogin}>Login</button>
+          <p className="text-center">
+            Don't have an account? <Link to="/register" className="text-primary">Sign up here</Link>.
+          </p>
         </div>
-        <button onClick={handleLogin} className="login-btn">Login</button>
-        <p className="signup-link">
-          Don't have an account? <Link to="/register">Sign up here</Link>.
-        </p>
       </div>
-    </div>
+    </>
   );
 };
 
