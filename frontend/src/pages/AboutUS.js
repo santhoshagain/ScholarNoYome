@@ -10,7 +10,7 @@ const AboutUs = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#3498db' }}>
         <div className="container">
           <Link className="navbar-brand" to="/">Scholarship Portal</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,9 +52,9 @@ const AboutUs = () => {
             <div className="about-card text-center">
               <img src={teamMember1} alt="Team Member 1" />
               <div className="team-member">
-                <h5>John Doe</h5>
-                <p>Founder & CEO</p>
-                <p>John is the visionary behind the company, bringing together a talented team to revolutionize the industry.</p>
+                <h5>Santhosh Kumar CH</h5>
+                <p>Backend</p>
+                <p>Cyber Security</p>
               </div>
             </div>
           </div>
@@ -62,9 +62,9 @@ const AboutUs = () => {
             <div className="about-card text-center">
               <img src={teamMember2} alt="Team Member 2" />
               <div className="team-member">
-                <h5>Jane Smith</h5>
-                <p>Chief Technology Officer</p>
-                <p>Jane leads the technology division, constantly pushing boundaries with cutting-edge solutions.</p>
+                <h5>Raja N</h5>
+                <p>Frontend</p>
+                <p>Cyber Security</p>
               </div>
             </div>
           </div>
@@ -72,9 +72,9 @@ const AboutUs = () => {
             <div className="about-card text-center">
               <img src={teamMember3} alt="Team Member 3" />
               <div className="team-member">
-                <h5>David Lee</h5>
-                <p>Marketing Head</p>
-                <p>David ensures our message reaches the world with compelling campaigns and strategic outreach.</p>
+                <h5>Yaswanth N</h5>
+                <p>Database</p>
+                <p>Cyber Security</p>
               </div>
             </div>
           </div>

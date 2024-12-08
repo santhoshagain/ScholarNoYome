@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import './styles/AdminDashboard.css'; // Your custom CSS for styling
+import { useNavigate } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap'; 
 import BACKEND_URL from './config';
-import AdminsNavBar from './adminsNavBar'; // Import the top navbar
-import { Modal, Button } from 'react-bootstrap'; // Bootstrap Modal and Button
+import AdminsNavBar from './adminsNavBar'; 
 
 const AdminDashboard = () => {
   const [scholarships, setScholarships] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedScholarship, setSelectedScholarship] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if the user is logged in
+    const role = localStorage.getItem('role');
+    if (!role) {
+      navigate('/login'); // Redirect to login if no session
+    }
+
     const fetchScholarships = async () => {
       try {
         const response = await fetch(`${BACKEND_URL}/scholarships`);
@@ -21,7 +28,7 @@ const AdminDashboard = () => {
     };
 
     fetchScholarships();
-  }, []);
+  }, [navigate]);
 
   const handleShowModal = (scholarship) => {
     setSelectedScholarship(scholarship);
@@ -33,16 +40,16 @@ const AdminDashboard = () => {
     setSelectedScholarship(null);
   };
 
+
   return (
     <div>
-      <AdminsNavBar /> {/* Navbar placed at the top */}
+      <AdminsNavBar />
       <div className="admin-dashboard-container">
         <div className="admin-dashboard-content">
           <h1 className="admin-dashboard-title">Admin Dashboard</h1>
           <p className="admin-dashboard-subtitle">View the list of available scholarships.</p>
 
           <div className="row">
-            {/* Scholarship List - Displayed in a grid layout */}
             {scholarships.length > 0 ? (
               scholarships.map((scholarship) => (
                 <div className="col-md-4 col-sm-6" key={scholarship.id}>
@@ -60,23 +67,17 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* Modal (Lightbox) for displaying detailed scholarship info */}
       {selectedScholarship && (
-        <Modal show={showModal} onHide={handleCloseModal} size="lg">
+        <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
             <Modal.Title>{selectedScholarship.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Description</h4>
-            <p>{selectedScholarship.description}</p>
-            <h4>Amount: ${selectedScholarship.amount}</h4>
-            {/* You can add any other information you'd like to display */}
+            <p><strong>Description:</strong> {selectedScholarship.description}</p>
+            <p><strong>Amount:</strong> ${selectedScholarship.amount}</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
-            <Button variant="primary">Take Action</Button> {/* Add action buttons if needed */}
+            <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
           </Modal.Footer>
         </Modal>
       )}

@@ -8,6 +8,7 @@ import {
   Legend,
   Title,
 } from 'chart.js';
+import AdminsNavBar from './adminsNavBar';  // Import AdminsNavBar
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -116,41 +117,44 @@ const ApplicationsChart = () => {
   }, []);
 
   return (
-    <div
-      className="chart-container"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh', // Ensure full height to center
-      }}
-    >
-      <h3 style={{ textAlign: 'center', marginBottom: '20px' }}>Applications Overview</h3>
+    <div>
+      <AdminsNavBar />  {/* Added AdminsNavBar here */}
       <div
+        className="chart-container"
         style={{
-          width: '250px', // Increase width
-          height: '250px', // Increase height
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh', // Ensure full height to center
         }}
       >
-        <Doughnut
-          data={applicationData}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              tooltip: {
-                callbacks: {
-                  label: (tooltipItem) => {
-                    return `${tooltipItem.label}: ${tooltipItem.raw}%`;
+        <h3 style={{ textAlign: 'center', marginBottom: '20px' }}>Applications Overview</h3>
+        <div
+          style={{
+            width: '250px', // Increase width
+            height: '250px', // Increase height
+          }}
+        >
+          <Doughnut
+            data={applicationData}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (tooltipItem) => {
+                      return `${tooltipItem.label}: ${tooltipItem.raw}%`;
+                    },
                   },
                 },
               },
-            },
-          }}
-          width={250} // Increased width
-          height={250} // Increased height
-        />
+            }}
+            width={250} // Increased width
+            height={250} // Increased height
+          />
+        </div>
       </div>
     </div>
   );

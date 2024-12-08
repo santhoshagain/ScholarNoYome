@@ -1,45 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useNavigate } from 'react-router-dom';  
+import './styles/AdminNavBar.css'; 
 
 const AdminNavBar = () => {
+  const navigate = useNavigate();  
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('role');  
+    localStorage.removeItem('studentId');  
+    navigate('/login');  
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
+    <nav className="admin-navbar">
+      <div className="navbar-container">
         <Link className="navbar-brand" to="/">ScholarNoYome</Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/admin-dashboard">View Scholarships</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/add-scholarship">Add Scholarship</Link>
-            </li>
-            {/* Edit Link for editing a scholarship */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/edit-scholarship">Edit Scholarship</Link>
-            </li>
-            {/* Delete Button (optional, normally part of the content) */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/delete-scholarship">Delete Scholarship</Link>
+        
+        <div className="navbar-menu">
+          <div className="dropdown">
+            <button className="dropdown-btn">Admin CRUD</button>
+            <div className="dropdown-content">
+              <Link to="/admin-dashboard">View Scholarships</Link>
+              <Link to="/add-scholarship">Add Scholarship</Link>
+              <Link to="/edit-scholarship">Update Scholarship</Link>
+              <Link to="/delete-scholarship">Delete Scholarship</Link>
+            </div>
+          </div>
           
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/view-applied">View Applied Scholarship</Link>
+          <div className="dropdown">
+            <button className="dropdown-btn">Other Operations</button>
+            <div className="dropdown-content">
+              <Link to="/view-applied">View Applied Scholarships</Link>
+              <Link to="/appchart">View Applications Chart</Link>
+            </div>
+          </div>
           
-            </li>
-          </ul>
+          {/* Logout Button */}
+          <button className="nav-link btn" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
     </nav>

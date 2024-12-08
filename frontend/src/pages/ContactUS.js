@@ -5,8 +5,8 @@ const ContactUS = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
+      <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#3498db', width: '100%' }}>
+        <div className="container-fluid"> {/* Full width container */}
           <Link className="navbar-brand" to="/">Scholarship Portal</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@ const ContactUS = () => {
       </nav>
 
       {/* Contact Us Section */}
-      <section className="container py-5 flex-grow-1">
+      <section className="container-fluid py-5 flex-grow-1" style={{ paddingLeft: 0, paddingRight: 0 }}>
         <div className="section-title text-center mb-5">
           <h2>Contact Us</h2>
           <p>If you have any questions, feel free to reach out to us through the following contact details.</p>
@@ -60,11 +60,46 @@ const ContactUS = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-dark text-white text-center py-3 mt-auto">
+      <footer className="bg-dark text-white text-center py-3 mt-auto" style={{ width: '100%' }}>
         <p>&copy; 2024 Scholarship Portal. All rights reserved.</p>
       </footer>
+
+      <style>
+        {`
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0; /* Ensure no margin around the body */
+            padding: 0; /* Ensure no padding around the body */
+            width: 100%; /* Full width */
+          }
+          .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 600;
+          }
+          .section-title p {
+            font-size: 1rem;
+            color: #555;
+          }
+          .contact-detail h4 {
+            font-size: 1.5rem;
+            color: #3498db;
+            font-weight: 600;
+          }
+          .contact-detail p {
+            color: #555;
+          }
+          footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            font-size: 1rem;
+          }
+        `}
+      </style>
     </div>
   );
-}
+};
 
 export default ContactUS;

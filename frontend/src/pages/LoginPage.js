@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,6 +8,16 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  // Check if user is already logged in and redirect to dashboard
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    if (role === 'Student') {
+      navigate('/Student-Dashboard');
+    } else if (role === 'Admin') {
+      navigate('/Admin-Dashboard');
+    }
+  }, [navigate]);
 
   const handleLogin = async () => {
     if (!email.includes('@')) {
@@ -21,11 +31,13 @@ const LoginPage = () => {
       alert(response.data.message);
 
       if (response.status === 200) {
-        const userRole = response.data.role;
+        // Store user role in localStorage for session persistence
+        localStorage.setItem('role', response.data.role);
 
-        if (userRole === "Student") {
+        const userRole = response.data.role;
+        if (userRole === 'Student') {
           navigate('/Student-Dashboard');
-        } else if (userRole === "Admin") {
+        } else if (userRole === 'Admin') {
           navigate('/Admin-Dashboard');
         }
       }
@@ -37,11 +49,10 @@ const LoginPage = () => {
 
   return (
     <>
-      {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container">
           <a className="navbar-brand" href="/">Scholarship Portal</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
@@ -50,20 +61,13 @@ const LoginPage = () => {
                 <Link className="nav-link" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact-us">Contact Us</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about-us">About Us</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/register">Sign Up</Link>
+                <Link className="nav-link" to="/register">Sign Up</Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
 
-      {/* Login Form */}
       <div className="container d-flex justify-content-center align-items-center min-vh-100">
         <div className="card shadow-lg p-4" style={{ width: '400px', borderRadius: '10px' }}>
           <h2 className="text-center mb-4">Login</h2>
@@ -86,9 +90,6 @@ const LoginPage = () => {
             />
           </div>
           <button className="btn btn-primary w-100 mb-3" onClick={handleLogin}>Login</button>
-          <p className="text-center">
-            Don't have an account? <Link to="/register" className="text-primary">Sign up here</Link>.
-          </p>
         </div>
       </div>
     </>

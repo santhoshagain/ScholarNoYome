@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/AdminDashboard.css';
-import BACKEND_URL from './config';
+import BACKEND_URL from './config'; // Replace with your backend URL
 import AdminsNavBar from './adminsNavBar'; // Import the top navbar
 
 const EditScholarship = () => {
@@ -12,14 +12,20 @@ const EditScholarship = () => {
     amount: ''
   });
   const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  // Fetch scholarships on component mount
   useEffect(() => {
     const fetchScholarships = async () => {
       try {
         const response = await fetch(`${BACKEND_URL}/scholarships`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch scholarships');
+        }
         const data = await response.json();
         setScholarships(data);
       } catch (error) {
+        setErrorMessage('Error fetching scholarships.');
         console.error('Error fetching scholarships:', error);
       }
     };
@@ -27,11 +33,13 @@ const EditScholarship = () => {
     fetchScholarships();
   }, []);
 
+  // Open the modal and set selected scholarship for editing
   const handleEditScholarship = (scholarship) => {
     setEditScholarship(scholarship);
     setShowModal(true);
   };
 
+  // Handle updating a scholarship
   const handleUpdateScholarship = async (e) => {
     e.preventDefault();
     try {
@@ -42,25 +50,35 @@ const EditScholarship = () => {
         },
         body: JSON.stringify(editScholarship)
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to update scholarship');
+      }
+
       const updatedScholarship = await response.json();
-      setScholarships(scholarships.map((scholarship) =>
-        scholarship.id === updatedScholarship.id ? updatedScholarship : scholarship
-      ));
-      setEditScholarship({ id: null, name: '', description: '', amount: '' });
+      setScholarships((prevScholarships) =>
+        prevScholarships.map((scholarship) =>
+          scholarship.id === updatedScholarship.id ? updatedScholarship : scholarship
+        )
+      );
       setShowModal(false);
+      setErrorMessage('');
     } catch (error) {
+      setErrorMessage('Error updating scholarship.');
       console.error('Error updating scholarship:', error);
     }
   };
 
+  // Close the modal without saving changes
   const handleCancel = () => {
     setEditScholarship({ id: null, name: '', description: '', amount: '' });
     setShowModal(false);
+    setErrorMessage('');
   };
 
   return (
     <div>
-      <AdminsNavBar /> {/* Navbar placed at the top */}
+      <AdminsNavBar />
       <div className="edit-scholarship-container">
         <div className="edit-scholarship-content">
           <h1 className="edit-scholarship-title">Edit Scholarship</h1>
@@ -68,6 +86,7 @@ const EditScholarship = () => {
 
           <div className="scholarship-list">
             <h2>Available Scholarships</h2>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
             {scholarships.length > 0 ? (
               scholarships.map((scholarship) => (
                 <div className="scholarship-card" key={scholarship.id}>
@@ -89,6 +108,7 @@ const EditScholarship = () => {
             )}
           </div>
 
+          {/* Modal for editing scholarship */}
           {showModal && (
             <div className="modal">
               <div className="modal-content">
@@ -98,7 +118,9 @@ const EditScholarship = () => {
                     type="text"
                     name="name"
                     value={editScholarship.name}
-                    onChange={(e) => setEditScholarship({ ...editScholarship, name: e.target.value })}
+                    onChange={(e) =>
+                      setEditScholarship({ ...editScholarship, name: e.target.value })
+                    }
                     placeholder="Scholarship Name"
                     required
                   />
@@ -123,7 +145,7 @@ const EditScholarship = () => {
                   />
                   <div className="modal-actions">
                     <button type="submit" className="admin-menu-button">
-                      Edit Scholarship
+                      Save Changes
                     </button>
                     <button
                       type="button"
