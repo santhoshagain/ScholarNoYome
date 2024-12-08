@@ -13,7 +13,7 @@ import VappliedScholarship from './pages/VappliedScholarship';
 import AboutUs from './pages/AboutUS';
 import ContactUS from './pages/ContactUS';
 import ApplicationsChart from './pages/ApplicationsChart';
-import AppliedScholarship from './pages/AppliedScholarship';
+//import AppliedScholarship from './pages/AppliedScholarship';
 import PrivateRoute from './pages/PrivateRoute';
 import Logout from './pages/Logout';
 
@@ -38,7 +38,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUS />} />
         <Route path="/appchart" element={<ApplicationsChart />} />
-        <Route path="/appliedscholarships" element={<AppliedScholarship />} />
+        {/* <Route path="/appliedscholarships" element={<AppliedScholarship />} /> */}
         <Route path="/logout" element={<Logout />} />
 
 
