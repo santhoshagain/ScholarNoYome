@@ -13,6 +13,7 @@
 	<groupId>com.scholarship</groupId>
 	<artifactId>ScholarNoYomeBackend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>ScholarNoYomeBackend</name>
 	<description> Scholarship project using Spring Boot</description>
 	<url/>
@@ -29,7 +30,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
     <maven.compiler.compilerArgument>-parameters</maven.compiler.compilerArgument>
 
 	</properties>

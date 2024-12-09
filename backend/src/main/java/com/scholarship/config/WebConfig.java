@@ -7,14 +7,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    private final String frontendUrl = "http://localhost:3000"; // Replace with your frontend URL
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
-                .allowedOrigins(frontendUrl)  // React frontend URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+        registry.addMapping("/**") // Allow all paths
+                .allowedOrigins("*") // Allow requests from any origin
+                .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specific HTTP methods
+                .allowedHeaders("*") // Allow all headers
+                .allowCredentials(false); // Disallow credentials (e.g., cookies, Authorization headers)
     }
 }

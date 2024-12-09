@@ -11,10 +11,10 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user is logged in
+   
     const role = localStorage.getItem('role');
     if (!role) {
-      navigate('/login'); // Redirect to login if no session
+      navigate('/login'); 
     }
 
     const fetchScholarships = async () => {

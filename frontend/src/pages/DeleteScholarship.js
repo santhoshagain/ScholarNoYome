@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/AdminDashboard.css';
 import BACKEND_URL from './config';
-import AdminsNavBar from './adminsNavBar'; // Import the top navbar
+import AdminsNavBar from './adminsNavBar'; 
 
 const DeleteScholarship = () => {
   const [scholarships, setScholarships] = useState([]);

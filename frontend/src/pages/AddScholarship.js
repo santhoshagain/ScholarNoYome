@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BACKEND_URL from './config';
 import { useNavigate } from 'react-router-dom';
-import AdminNavBar from './adminsNavBar';  // Corrected the component name
+import AdminNavBar from './adminsNavBar'; 
 
 const AddScholarship = () => {
   const [newScholarship, setNewScholarship] = useState({
@@ -27,7 +27,7 @@ const AddScholarship = () => {
         body: JSON.stringify(newScholarship)
       });
       if (response.ok) {
-        navigate('/admin-dashboard');  // Redirect to the admin dashboard after success
+        navigate('/admin-dashboard'); 
       }
     } catch (error) {
       console.error('Error adding scholarship:', error);
@@ -36,8 +36,7 @@ const AddScholarship = () => {
 
   return (
     <div>
-      <AdminNavBar /> {/* Corrected to use AdminNavBar with the right casing */}
-      
+      <AdminNavBar /> 
       <div className="container py-5">
         <h2 className="text-center text-dark mb-5">Add New Scholarship</h2>
         

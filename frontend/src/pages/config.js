@@ -1,4 +1,4 @@
 // config.js
-const BACKEND_URL = "http://localhost:1996/api";
+const BACKEND_URL = "scholarnoyomebackend.up.railway.app/api";
 
 export default BACKEND_URL;

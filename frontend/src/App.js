@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // Updated import
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -13,18 +13,18 @@ import VappliedScholarship from './pages/VappliedScholarship';
 import AboutUs from './pages/AboutUS';
 import ContactUS from './pages/ContactUS';
 import ApplicationsChart from './pages/ApplicationsChart';
-//import AppliedScholarship from './pages/AppliedScholarship';
+import AppliedScholarships from './pages/AppliedScholarships';
 import PrivateRoute from './pages/PrivateRoute';
 import Logout from './pages/Logout';
 
 function App() {
   return (
     <Router>
-      <Routes>  {/* Replaced Switch with Routes */}
-        <Route path="/" element={<Home />} />  {/* Replaced component with element */}
-        <Route path="/login" element={<LoginPage />} />  {/* Replaced component with element */}
-        <Route path="/register" element={<RegisterPage />} />  {/* Replaced component with element */}
-        {/* Protect these routes */}
+      <Routes>  
+        <Route path="/" element={<Home />} />  
+        <Route path="/login" element={<LoginPage />} /> 
+        <Route path="/register" element={<RegisterPage />} />  
+        
         <Route element={<PrivateRoute role="Student" />}>
           <Route path="/student-dashboard" element={<StudentDashboard />} />
         </Route>
@@ -38,7 +38,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUS />} />
         <Route path="/appchart" element={<ApplicationsChart />} />
-        {/* <Route path="/appliedscholarships" element={<AppliedScholarship />} /> */}
+        <Route path="/appliedscholarships" element={<AppliedScholarships />} />
         <Route path="/logout" element={<Logout />} />
 
 
