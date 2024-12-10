@@ -11,4 +11,10 @@ public class HealthCheckController {
         return "ScholarNoyome server is up and running. This is the backend server.\n" +
                "This is the frontend link: https://scholar-no-yome.vercel.app/";
     }
+
+    @GetMapping("/health")
+    public String healthStatus() {
+        return "Server is up and running!";
+    }
+
 }
