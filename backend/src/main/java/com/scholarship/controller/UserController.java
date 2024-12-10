@@ -5,6 +5,7 @@ import com.scholarship.entity.User;
 import com.scholarship.repository.UserRepository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,15 @@ public class UserController {
     
     @GetMapping({"","/"})
     public String healthCheck() {
-        return "ScholarNoyome server is up and running. This is the backend server.\n" +
-               "This is the frontend link: https://scholar-no-yome.vercel.app/";
+        // Fetch some data from the database
+        List<User> users = userRepository.findAll();  // Example to fetch all users
+
+        // You can also return data from the database in JSON format
+        if (users.isEmpty()) {
+            return "No users found in the database";
+        } else {
+            return "Number of users in the database: " + users.size();
+        }
     }
 
  // Signup endpoint
