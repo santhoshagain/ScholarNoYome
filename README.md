@@ -43,14 +43,9 @@ This project is a **Scholarship Management Portal**, which facilitates role-base
 
 #### 1. Clone the Repository:
 ```bash
-# Clone the frontend repository
-git clone <frontend-repo-url>
-
-# Clone the backend repository
-git clone <backend-repo-url>
+# Clone the repository
+git clone <repo-url>
 ```
-
----
 
 ### Running the Frontend:
 1. Navigate to the frontend directory:
