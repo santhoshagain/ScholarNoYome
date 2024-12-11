@@ -68,30 +68,98 @@ const LoginPage = () => {
         </div>
       </nav>
 
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="card shadow-lg p-4" style={{ width: '400px', borderRadius: '10px' }}>
-          <h2 className="text-center mb-4">Login</h2>
-          <div className="mb-3">
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button className="btn btn-primary w-100 mb-3" onClick={handleLogin}>Login</button>
+      {/* Note Section */}
+      <div className="container mt-3">
+        <div
+          className="alert alert-danger"
+          role="alert"
+          style={{ fontSize: '28px', marginBottom: '10px' }}
+        >
+          <strong>For testing purposes, you can use these credentials:</strong>
+          <ul style={{ marginBottom: '5px', paddingLeft: '20px' }}>
+            <li><strong>Admin Access</strong>: Email: <code>admin@admin</code>, Password: <code>admin</code></li>
+            <li>
+              <strong>Student Access</strong>: Email: <code>kumar@s</code>, Password: <code>Kumar@18</code>, 
+              Student ID: <code>82</code>, Name: <code>Kumar</code>
+            </li>
+          </ul>
         </div>
       </div>
+
+      <div
+        className="container d-flex justify-content-center align-items-center min-vh-100"
+        style={{ marginTop: '-200px' }} // Reduce gap between the text and login fields
+      >
+        <div
+  className="card shadow-lg"
+  style={{
+    width: '350px',
+    borderRadius: '10px',
+    padding: '20px',
+    margin: '0 auto',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#fff',
+  }}
+>
+  <h2
+    className="text-center"
+    style={{
+      fontSize: '20px',
+      marginBottom: '20px',
+      color: '#333',
+    }}
+  >
+    Login
+  </h2>
+  <div className="mb-4">
+    <input
+      type="email"
+      className="form-control"
+      placeholder="Enter your email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      style={{
+        fontSize: '14px',
+        padding: '10px',
+        borderRadius: '5px',
+        border: '1px solid #ced4da',
+        width: '100%',
+      }}
+    />
+  </div>
+  <div className="mb-4">
+    <input
+      type="password"
+      className="form-control"
+      placeholder="Enter your password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      style={{
+        fontSize: '14px',
+        padding: '10px',
+        borderRadius: '5px',
+        border: '1px solid #ced4da',
+        width: '100%',
+      }}
+    />
+  </div>
+  <button
+    onClick={handleLogin}
+    style={{
+      fontSize: '14px',
+      padding: '10px 0',
+      borderRadius: '5px',
+      border: 'none',
+      backgroundColor: '#007bff',
+      color: 'white',
+      cursor: 'pointer',
+      width: '100%',
+    }}
+  >
+    Login
+  </button>
+</div>
+</div>
     </>
   );
 };
